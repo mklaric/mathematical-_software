@@ -1,0 +1,432 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>DZ</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
+
+        <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+        <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+        <script>
+            $(function () {
+                sagecell.makeSagecell({
+                    inputLocation: 'div.compute', 
+                    evalButtonText: 'Pokreni'
+                });
+            });
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+
+        <link rel="stylesheet" href="css/style.css">
+
+        <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                extensions: ["tex2jax.js"],
+                jax: ["input/TeX", "output/HTML-CSS"],
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true
+                },
+                "HTML-CSS": { availableFonts: ["TeX"] }
+            });
+        </script>
+	</head>
+	<body>
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Uvod</a></li>
+							<li><a href="#one">Sve plohe</a></li>
+							<li><a href="#two">Zanimljivo</a></li>
+							<li><a href="#three">Kontakt</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h1>Plohe drugog reda</h1>
+							<p><strong>Ploha drugog reda</strong> je skup svih točaka trodimenzionalnog prostora koje zadovoljavaju jednadžbu drugog stupnja (ili reda)
+							$$
+            					Ax^2 + By^2 + Cz^2 + Dxy+ Exz + Fyz + Gx + Hy + Iz + K=0
+        					$$
+        					pri čemu je barem jedan od koeficijenata $A,B,C,D,E$ i $F$ različit od nule, odnosno u formuli postoji barem jedan netrivijalni nelinearni član.
+        					Sve se plohe II. reda mogu prikazati u jednom od sljedećih kanonskih oblika:</p>
+							<ul class="actions">
+								<li><a href="#one" class="button scrolly">Prouči više</a></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- One -->
+					<section id="one" class="wrapper style2 spotlights">
+						<section>
+							<div class="content">
+								<div class="inner">
+									<h2>Sfera</h2>
+									<p>Sfera je skup točaka u prostoru jednako udaljenih (za radijus r) od neke točke (središta sfere).
+										Jednadžba sfere radijusa r sa središtem u ishodištu može se opisati formulom 
+										$$ x^2 + y^2 + z^2=r^2 $$</p>
+<div class="compute">
+show(sphere((0,0,0),size=1, color='black', aspect_ratio=[1,1,1]), figsize=6)
+</div>								<p> Nivo-plohe sfere (presjeci s ravninama paralelnim s $ xy$-ravninom) i presjeci s ravninama paralelnim s $ xz$- i $ 
+										yz$-ravninama su kružnice</p>
+									<p>No ako mijenjamo koeficijente uz jednadžbe dobivamo <strong>elipsoid</strong> opisan formulom
+										$$ \frac{x^2}{a^2} + \frac{y^2}{b^2}+ \frac{z^2}{c^2}=1 $$</p>
+<div class="compute">
+show(sphere((0,0,0),size=1, color='black', opacity=0.7, aspect_ratio=[1,2,4]), figsize=6)
+</div>							<p>Nivo-plohe elipsoida kao i presjeci s ravninama paralelnim s $ xz$- i $ yz$-ravninama su elipse.</p>		
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<div class="inner">
+									<h2>Hiperboloidi</h2>
+									<h3>Jednoplošni hiperboloid</h3>
+									<p>U prostoru $\mathbb{R}^3$ jednoplošni hiperboloid je skup točaka (x,y,z) koje zadovoljavaju jednadžbu
+									$$ \left(\frac{x}{a}\right)^2 + \left(\frac{y}{b}\right)^2- \left(\frac{z}{c}\right)^2=1 $$ 
+									Naravno možemo ga zapisati i pomoću parametarske jednadžbe, no za to moramo koristiti hiperbolne funkcije.
+									$$ r(u,v)=(a \cos u \cos v, b \cos u \sin v, c\sinh u)$$
+									Provjerimo prvo ponašanje $\sinh x$ funkcije.
+									</p>
+<div class="compute">
+@interact
+def _(x=slider(-2,2,0.2,0,"n")):
+    print sinh(x)
+</div>	
+
+<div class="compute">
+plot(sinh, (-2, 2), thickness=2.0, rgbcolor=(0.5, 0.1, 0.4), legend_label='sinh')
+</div>								
+									<p>Sada pogledajmo koje su neke točke na jednoplošnom hiperboloidu dobivene parametarskim oblikom</p>
+<div class="compute">
+@interact
+def _(u=slider(-2,2,0.2,0), v=slider(-2,2,0.2,0)):
+    print (cos(u)*cos(v), cos(u)*sin(v), sinh(u))
+</div>
+
+									<h3>Dvoplošni hiperboloid</h3>
+									<p>Dok dvoplošni zadovoljava jednadžbu
+									$$ \left(\frac{x}{a}\right)^2 + \left(\frac{y}{b}\right)^2- \left(\frac{z}{c}\right)^2=-1 $$ </p>
+									<p>Nivo-plohe hiperboloida su elipse, a presjeci s ravninama koje su paralelne s $ z$-osi su hiperbole. Kao i kod ostalih ploha, pomoću transformacije  $ x\to x-x_0$ pomičemo središte hiperboloida, a cikličkom zamjenom varijabli nastaju hiperboloidi koji se protežu u smjeru ostalih koordinatnih osi.</p>
+<div class="compute">
+x,y,z = var('x,y,z')
+implicit_plot3d(x^2 + y^2 - 1.5*z^2 +1, (x, -2, 2), (y, -3, 3), (z, -2, 2))
+</div>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<div class="inner">
+									<h2>Paraboloidi</h2>
+									<h3>Eliptički paraboloid</h3>
+									<p>Opća formula eliptičkog paraboloida je 
+									$$ \left(\frac{x}{a}\right)^2 + \left(\frac{y}{b}\right)^2=z $$ 
+									Nivo plohe eliptičkog paraboloida su elipse, a presjeci s ravninama koje su paralelne s $ xz$-ravninom i $ yz$ ravninom su parabole</p>
+									<p>Pogledajmo nivo plohe u različitim bojama</p>
+<div class="compute">
+x,y = var('x,y')
+colormaps=sage.plot.colors.colormaps.keys()
+f(x,y) = 0.25*x^2 + y^2
+@interact
+def _(cmap=selector(colormaps)):
+	contour_plot(f, (-2, 2), (-2, 2), contours=(0.1, 0.4, 0.7, 1.0, 1.3, 1.6), cmap=cmap).show()
+</div>	
+
+									<h3>Hiperbolički paraboloid</h3>
+									<p>Opća formula hiperboličkog paraboloida je 
+									$$ \left(\frac{x}{a}\right)^2 - \left(\frac{y}{b}\right)^2=z $$  </p>
+									
+<div class="compute">
+u, v = var('u,v')
+plot3d(u^2-v^2, (u, -1, 1), (v, -1, 1), plot_points=[50,50])
+</div>	
+								<p>	Hiperbolički paraboloid ima oblik sedla. Nivo plohe su hiperbole, a presjeci s ravninama koje su paralelne s $ xz$-ravninom i $ yz$ ravninom su parabole.</p>
+
+<div class="compute">
+x,y = var('x,y')
+f(x,y) = x^2 - y^2
+contour_plot(f, (-2, 2), (-2, 2), 
+contours=(0.1, 0.4, 0.7, 1.0, 1.3, 1.6), cmap='bone')
+</div>
+
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="content">
+								<div class="inner">
+									<h2>Stožac</h2>
+									<p>U prostoru $\mathbb{R}^3$ jednoplošni hiperboloid je skup točaka (x,y,z) koje zadovoljavaju jednadžbu
+									$$ \left(\frac{x}{a}\right)^2 + \left(\frac{y}{b}\right)^2- \left(\frac{z}{c}\right)^2=0 $$ 
+									Stožac može nastati rotacijom, pa je zato rotacijsko tijelo.
+									</p>
+<div class="compute">
+from sage.plot.plot3d.shapes import Cone
+v = (0,0,5)
+G = Cone(1/5, 1, opacity=.85)+ Cone(1/5, 1, opacity=.65).translate((0, 0, -1.9)).rotateX(pi)
+G.show(aspect_ratio=1)
+</div>									
+									<p> Nacrtati ćemo stožac, te stožac koji je nastao iz njega rotacijom oko X osi za 90° </p>
+<div class="compute">
+from sage.plot.plot3d.shapes import Cone
+G = Cone(1/5, 0.5,opacity=.75) + Cone(1/5, 0.5, opacity=.65, color="purple").rotateX(pi/2)
+G.show(aspect_ratio=1)
+</div>							
+								<p> Stožac također možemo zapisati parametarskom jednadžžbom
+								$$ r(u,v)=(av \cos u, bv \sin u, cv)$$
+								pogledajmo koje točke ćemo dobiti ako za npr a=1, b=1, c=1 fiksiramo z koordinatu</p>
+<div class="compute">
+v=4
+@interact
+def _(u=slider(-1,1,0.1,0)):
+    print (cos(u)*v, v*sin(u), v)
+</div>		
+								<p> Dobivene točke su točke kružnice stošca, na visini z=4 </p>
+
+
+								</div>
+							</div>
+						</section>
+					</section>
+
+				<!-- Two -->
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2>Zanimljivosti</h2>
+							<p>Ovdje ćemo pokazati neke lijepe 3d plohe koje možemo nacrtati pomoću sage-a</p>
+							
+							<div class="content">
+								<div class="inner">
+									<section>
+										
+										<h3>Neorijentabilne plohe</h3>
+										<div>Neka je $ \Sigma{}$ glatka ploha. U svakoj točki na plohi postoji tangencijalna ravnina, pa prema tome u svakoj točki na plohu mogu se postaviti dva jedinična vektora normale.
+										Izborom u svakoj točki jednoga od njih kažemo da je dana orijentacija plohe. One plohe kojima je tako određeno polje vektora normala neprekidno zovu se <strong>orijentabilne plohe.</strong>
+										No nas zanimaju one druge, kojima se ne može izabrati neprekidna orijentacija. <strong>Neorijentabilne plohe.</strong> </div>
+										<br>
+									</section>
+								</div>
+							</div>		
+
+							<div class="features">
+								<section>
+									<span class="icon major fa-chain"></span>
+									<h3>Mobiusova vrpca</h3>
+									<p>Möbiusova ploha je ploha koja ima samo jednu stranu i jedan rub, a nastaje spajanjem dviju suprotnih stranica pravokutnika tako da se spoje suprotni vrhovi. Nazvana je po A. F. Möbiusu, koji ju je prvi opisao 1858. Može se napraviti od vrpce tako da joj se jedan kraj torzijski zakrene za 180°, vrpca svine u krug i krajevi spoje.</p>
+<div class="compute">
+cm = colormaps.YlGnBu
+def c(x,y): return sin(x*y)**2
+from sage.plot.plot3d.parametric_surface import MoebiusStrip
+MoebiusStrip(5,1,plot_points=2000, color=(c,cm))
+</div>									
+								</section>
+								<section>
+									<span class="icon major fa-flask"></span>
+									<h3>Kleinova boca</h3>
+									<p>Nastaje spajanjem dva ruba cilindra, ali ne tako da dobijemo torus, već tako da jednom rubu prije spajanja promijenimo orijentaciju,zaokrenemo ga. Zvuči jednostavno. Kod Mobiusove trake bilo je lako promijeniti orijentaciju. Sada radimo istu stvar, samo smo se popeli dimenziju više!</p>
+<div class="compute">
+u, v = var('u,v')
+fx = (3*(1+sin(v)) + 2*(1-cos(v)/2)*cos(u))*cos(v)
+fy = (4+2*(1-cos(v)/2)*cos(u))*sin(v)
+fz = -2*(1-cos(v)/2) * sin(u)
+parametric_plot3d([fx, fy, fz], (u, 0, 2*pi), (v, 0, 2*pi), frame=False, color="#330033")
+</div>								
+								</section>
+
+									
+								<section>
+									<span class="icon major fa-circle-o "></span>
+									<h3>Osmica</h3>
+									<div>Vrijedi i obrat: spajanjem rubova dviju zrcalno simetričnih Mobiusovih traka, možete dobiti Kleinovu bocu. O tome govore ovi stihovi:
+										<blockquote>
+										A mathematician named Klein
+										Thought the Mobius strip was divine ¨
+										He said “If you glue
+										The edges of two
+										You can make a strange bottle like mine”.
+										</blockquote>
+									Ploha koja nastane tim spajanjem izgleda malo drugačije, no zapravo se radi o Kleinovoj boci. I ovdje ona mora prolaziti sama
+									kroz sebe. Model se naziva “osmica” jer podsjeća na “sfrkanu” brojku osam, i jednako je zanimljiva.
+									</div>
+<div class="compute">
+var('u,v')
+r = 2.0
+f_x = (r + cos(u / 2) * sin(v) - sin(u / 2)
+    * sin(2 * v)) * cos(u)
+f_y = (r + cos(u / 2) * sin(v) - sin(u / 2)
+    * sin(2 * v)) * sin(u)
+f_z = sin(u / 2) * sin(v) + cos(u / 2) * sin(2 * v)
+parametric_plot3d([f_x, f_y, f_z], (u, 0, 2 * pi),
+    (v, 0, 2 * pi), color="purple")
+</div>									
+								</section>
+								<section>
+									<span class="icon major fa-hourglass-half"></span>
+									<h3>Kleinova boca u vremenu</h3>
+									<p>Ovdje možemo pogledati vremensku evoluciju Kleinove figure u xyzt-prostoru</p>
+									<img src="klein.gif" alt="" >
+
+								</section>
+							</div>
+							<div class="content">
+								<div class="inner">
+									<section>
+										
+										<h3>Još neke stvari koje možemo nacrtati u sage-u</h3>
+										
+										<br>
+									</section>
+								</div>
+							</div>		
+
+							<div class="features">
+								<section>
+									<span class="icon major fa-cube "></span>
+									<h3>Kocke u bojama</h3>
+									<p>Za zabavu probajte nacrtati i Rubikovu kocku</p>
+<div class="compute">
+from sage.plot.plot3d.shapes import ColorCube
+ColorCube(1, ['purple', 'yellow', 'blue']).show()
+</div>
+								</section>
+								<section>
+									<span class="icon major  fa-toggle-on "></span>
+									<h3>Metakugle</h3>
+<div class="compute">
+x,y,z=var('x y z')
+def metaball(x0, y0, z0): return 1 / ((x-x0)^2 + (y-y0)^2 + (z-z0)^2)
+implicit_plot3d(metaball(-0.6, 0, 0) + metaball(0.6, 0, 0), (x, -2, 2), (y, -2, 2), (z, -2, 2), plot_points=60, contour=2)
+</div>
+								</section>
+								<section>
+									<span class="icon major fa-arrows-alt"></span>
+									<h3>Vektorska polja</h3>
+									<p>Pomoću sage-a možemo crtati i vektorska polja</p>
+<div class="compute">								
+x,y,z=var('x y z')
+plot_vector_field3d((x*cos(z),-y*cos(z),sin(z)), (x,0,pi), (y,0,pi), (z,0,pi))
+</div>										
+								</section>
+								<section>
+									<span class="icon major fa-paper-plane"></span>
+									<h3>Plohe</h3>
+									<p>3-dimenzionalne plohe definirane listom točaka u prostoru</p>
+<div class="compute">		
+pi = float(pi)
+m = matrix(RDF, 6, [sin(i^2 + j^2) for i in [0,pi/5,..,pi] for j in [0,pi/5,..,pi]])					
+list_plot3d(m, texture='blue', interpolation_type='spline', degree=5, frame_aspect_ratio=[1, 1, 1/3])
+</div>										
+								</section>
+
+
+
+							</div>
+						</div>
+					</section>
+
+				<!-- Three -->
+					<section id="three" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Kontaktirajte me</h2>
+							<blockquote>
+								<span class="icon major fa-lightbulb-o"></span>
+							  <p>Ako želite imati dobre ideje, morate ih imati puno. Mnoge će biti pogrešne, i zato treba naučiti koje ideje treba odbaciti.</p>
+							  <footer>— Linus Pauling </footer>
+							</blockquote>
+							<div class="split style1">
+								<section>
+									<form method="post" action="#">
+										<div class="field half first">
+											<label for="name">Name</label>
+											<input type="text" name="name" id="name" />
+										</div>
+										<div class="field half">
+											<label for="email">Email</label>
+											<input type="text" name="email" id="email" />
+										</div>
+										<div class="field">
+											<label for="message">Message</label>
+											<textarea name="message" id="message" rows="5"></textarea>
+										</div>
+										<ul class="actions">
+											<li><a href="" class="button submit">Send Message</a></li>
+										</ul>
+									</form>
+								</section>
+								<section>
+									<ul class="contact">
+										<li>
+											<h3>Adresa</h3>
+											<span>Bijenička cesta 30<br />
+											Pmf-MO<br />
+											10000 Zagreb</span>
+										</li>
+										<li>
+											<h3>Email</h3>
+											<a href="mailto:mklaric@student.math.hr" >mklaric@student.math.hr</a>
+
+										</li>
+										<li>
+											<h3>Telefon</h3>
+											<span> 01 4605 777</span>
+										</li>
+										<li>
+											<h3>Social</h3>
+											<ul class="icons">
+												
+												<li><a href="https://www.facebook.com/PMF.MO" class="fa-facebook"><span class="label">Facebook</span></a></li>
+												<li><a href="https://www.instagram.com/neonfluxes/" class="fa-instagram"><span class="label">Instagram</span></a></li>
+												<li><a href="https://www.linkedin.com/in/magda-klari%C4%87-0618b8113" class="fa-linkedin"><span class="label">LinkedIn</span></a></li>
+											</ul>
+										</li>
+									</ul>
+								</section>
+							</div>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP and *magda*</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,4 @@
+\select@language {croatian}
+\contentsline {section}{\numberline {1}Riemannov integral ome\IeC {\dj }ene funkcije na pravokutniku}{3}
+\contentsline {section}{\numberline {2}Fubinijev teorem}{4}
+\contentsline {subsection}{\numberline {2.1}Neki primjeri}{6}
